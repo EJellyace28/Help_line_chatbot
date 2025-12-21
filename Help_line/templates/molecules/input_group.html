@@ -1,0 +1,15 @@
+<div class="input-group">
+    <label for="{{ input_id }}">{{ label_text }}</label>
+    <input 
+        type="{{ input_type }}" 
+        id="{{ input_id }}"
+        name="{{ input_name|default:input_id }}"
+        placeholder="{{ placeholder|default:'' }}"
+        {% if required %}required{% endif %}
+        {% if minlength %}minlength="{{ minlength }}"{% endif %}
+        class="input form-input"
+    />
+    {% if error_msg %}
+        <span class="error-message" style="display: none; color: #dc2626; font-size: 14px; margin-top: 4px;">{{ error_msg }}</span>
+    {% endif %}
+</div>

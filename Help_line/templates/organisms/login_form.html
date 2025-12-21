@@ -1,0 +1,67 @@
+{% comment %}
+LOGIN FORM ORGANISM - Complete login form with validation
+{% endcomment %}
+
+<div class="form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <div class="logo" style="margin-bottom: 15px;">🌸 Calm Companion</div>
+            <h2 class="form-title">Welcome Back</h2>
+            <p class="form-subtitle">Continue your journey to inner peace</p>
+        </div>
+
+        {% if messages %}{% for message in messages %}<div class="alert alert-{{ message.tags }}"
+            style="padding: 12px; margin-bottom: 15px; border-radius: 8px; {% if message.tags == 'error' %}background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;{% else %}background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7;{% endif %}">
+            {{ message }}</div>{% endfor %}{% endif %}
+
+        <form method="POST" id="loginForm" onsubmit="return handleLogin(event)">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" name="loginEmail" placeholder="you@example.com" required
+                    class="input form-input" />
+            </div>
+
+            <div class="input-group">
+                <label for="loginPassword">Password</label>
+                <div style="position: relative;">
+                    <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password"
+                        required class="input form-input" style="padding-right: 45px;" />
+                    <button type="button" onclick="togglePassword()" id="togglePasswordBtn"
+                        style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #94a3b8; padding: 5px;"><svg
+                            id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg><svg id="eyeOffIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path
+                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                            </path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg></button>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                <label
+                    style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; color: #cbd5e1;"><input
+                        type="checkbox" id="rememberMe" name="rememberMe"
+                        style="width: 18px; height: 18px; accent-color: #a855f7; cursor: pointer;" />Remember me</label>
+                <a href="#" class="link" style="font-size: 14px;">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary full-width">Log In</button>
+        </form>
+
+        <div class="form-footer">Don't have an account? <a href="{% url 'register' %}" class="link">Sign up</a></div>
+
+        <div class="divider"><span>or</span></div>
+
+        <a href="{% url 'landing' %}" class="btn btn-secondary full-width"
+            style="text-align: center; display: block;">Back to Home</a>
+    </div>
+</div>

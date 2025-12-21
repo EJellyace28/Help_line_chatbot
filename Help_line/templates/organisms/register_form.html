@@ -1,0 +1,92 @@
+{% comment %}
+REGISTER FORM ORGANISM - Complete registration form with validation
+{% endcomment %}
+
+<div class="form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <div class="logo" style="margin-bottom: 15px;">🌸 Calm Companion</div>
+            <h2 class="form-title">Create Your Account</h2>
+            <p class="form-subtitle">Start your stress-free journey today</p>
+        </div>
+
+        {% if messages %}{% for message in messages %}<div class="alert alert-{{ message.tags }}"
+            style="padding: 12px; margin-bottom: 15px; border-radius: 8px; {% if message.tags == 'error' %}background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;{% else %}background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7;{% endif %}">
+            {{ message }}</div>{% endfor %}{% endif %}
+
+        <form method="POST" id="registerForm" onsubmit="return handleRegister(event)">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label for="registerName">Full Name</label>
+                <input type="text" id="registerName" name="registerName" placeholder="John Doe" required
+                    class="input form-input" />
+            </div>
+
+            <div class="input-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" name="registerEmail" placeholder="you@example.com" required
+                    class="input form-input" />
+            </div>
+
+            <div class="input-group">
+                <label for="registerPassword">Password</label>
+                <div style="position: relative;">
+                    <input type="password" id="registerPassword" name="registerPassword"
+                        placeholder="At least 8 characters" required minlength="8" class="input form-input"
+                        style="padding-right: 45px;" />
+                    <button type="button"
+                        onclick="toggleRegisterPassword('registerPassword', 'eyeIconReg', 'eyeOffIconReg')"
+                        style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #94a3b8; padding: 5px;"><svg
+                            id="eyeIconReg" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg><svg id="eyeOffIconReg" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path
+                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                            </path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg></button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="registerConfirmPassword">Confirm Password</label>
+                <div style="position: relative;">
+                    <input type="password" id="registerConfirmPassword" name="registerConfirmPassword"
+                        placeholder="Re-enter your password" required class="input form-input"
+                        style="padding-right: 45px;" />
+                    <button type="button"
+                        onclick="toggleRegisterPassword('registerConfirmPassword', 'eyeIconConfirm', 'eyeOffIconConfirm')"
+                        style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #94a3b8; padding: 5px;"><svg
+                            id="eyeIconConfirm" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg><svg id="eyeOffIconConfirm" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path
+                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                            </path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg></button>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary full-width">Create Account</button>
+        </form>
+
+        <div class="form-footer">Already have an account? <a href="{% url 'login' %}" class="link">Log in</a></div>
+
+        <div class="divider"><span>or</span></div>
+
+        <a href="{% url 'landing' %}" class="btn btn-secondary full-width"
+            style="text-align: center; display: block;">Back to Home</a>
+    </div>
+</div>

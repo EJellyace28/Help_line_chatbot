@@ -1,0 +1,23 @@
+{% comment %}
+BUTTON ATOM - Reusable button component
+
+Usage Examples:
+{% include "atoms/button.html" with text="Click Me" type="primary" %}
+{% include "atoms/button.html" with text="Cancel" type="secondary" onclick="showLogin()" %}
+{% include "atoms/button.html" with text="Submit" type="primary" btn_type="submit" full_width=True %}
+
+Parameters:
+- text: Button text (required)
+- type: primary|secondary|ghost (default: primary)
+- onclick: JavaScript function (optional)
+- btn_type: submit|button (default: button)
+- full_width: True|False (default: False)
+{% endcomment %}
+
+<button 
+    type="{{ btn_type|default:'button' }}" 
+    class="btn btn-{{ type|default:'primary' }} {% if full_width %}full-width{% endif %}"
+    {% if onclick %}onclick="{{ onclick }}"{% endif %}
+>
+    {{ text }}
+</button>

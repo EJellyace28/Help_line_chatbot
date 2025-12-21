@@ -1,0 +1,26 @@
+{% comment %}
+INPUT ATOM - Reusable input field component
+
+Usage Examples:
+{% include "atoms/input.html" with type="email" id="email" placeholder="you@example.com" required=True %}
+{% include "atoms/input.html" with type="password" id="password" placeholder="Password" minlength="8" %}
+{% include "atoms/input.html" with type="text" id="name" placeholder="John Doe" %}
+
+Parameters:
+- type: text|email|password|number|tel|url (default: text)
+- id: Input ID (required)
+- placeholder: Placeholder text (optional)
+- required: True|False (default: False)
+- minlength: Minimum length number (optional)
+- value: Default value (optional)
+{% endcomment %}
+
+<input 
+    type="{{ type|default:'text' }}" 
+    id="{{ id }}" 
+    class="input" 
+    {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+    {% if required %}required{% endif %}
+    {% if minlength %}minlength="{{ minlength }}"{% endif %}
+    {% if value %}value="{{ value }}"{% endif %}
+>

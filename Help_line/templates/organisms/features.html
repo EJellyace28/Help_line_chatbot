@@ -1,0 +1,23 @@
+{% comment %}
+FEATURES ORGANISM - Features section with multiple feature cards
+
+Usage:
+{% include "organisms/features.html" %}
+{% endcomment %}
+
+<section class="features">
+    <h2 class="section-title">Why Choose Calm Companion?</h2>
+    <div class="features-grid">
+        {% include "molecules/feature_card.html" with icon="💬" title="Always Available" description="Chat anytime, day or night. Your AI companion is here 24/7 whenever stress strikes." %}
+        
+        {% include "molecules/feature_card.html" with icon="🔒" title="Private & Secure" description="Your conversations are confidential. Share your thoughts in a safe, judgment-free space." %}
+        
+        {% include "molecules/feature_card.html" with icon="🧘" title="Stress Relief Tools" description="Get personalized coping strategies, breathing exercises, and calming techniques." %}
+        
+        {% include "molecules/feature_card.html" with icon="❤️" title="Empathetic Support" description="Experience compassionate conversations that help you process emotions and find clarity." %}
+        
+        {% include "molecules/feature_card.html" with icon="📊" title="Track Your Progress" description="Monitor your emotional wellbeing over time and celebrate your growth." %}
+        
+        {% include "molecules/feature_card.html" with icon="🌟" title="No Judgment" description="Express yourself freely without fear of being judged. Your feelings are valid." %}
+    </div>
+</section>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - Calm Companion{% endblock %}
+
+{% block content %}
+    {% include "organisms/register_form.html" %}
+{% endblock %}
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    console.log('Form is submitting!');
+    console.log('Name:', document.getElementById('registerName').value);
+    console.log('Email:', document.getElementById('registerEmail').value);
+    console.log('Has name attr:', document.getElementById('registerName').hasAttribute('name'));
+});
+</script>

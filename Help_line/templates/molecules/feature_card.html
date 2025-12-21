@@ -1,0 +1,18 @@
+{% comment %}
+FEATURE CARD MOLECULE - Icon + Title + Description
+
+Usage Examples:
+{% include "molecules/feature_card.html" with icon="💬" title="Always Available" description="Chat anytime, day or night. Your AI companion is here 24/7 whenever stress strikes." %}
+{% include "molecules/feature_card.html" with icon="🔒" title="Private & Secure" description="Your conversations are confidential. Share your thoughts in a safe, judgment-free space." %}
+
+Parameters:
+- icon: Emoji or icon (required)
+- title: Card title (required)
+- description: Card description (required)
+{% endcomment %}
+
+<div class="feature-card">
+    <div class="feature-icon">{{ icon }}</div>
+    <h3 class="feature-title">{{ title }}</h3>
+    <p class="feature-description">{{ description }}</p>
+</div>

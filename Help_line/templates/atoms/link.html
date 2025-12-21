@@ -1,0 +1,14 @@
+{% comment %}
+LINK ATOM - Reusable link component
+
+Usage Examples:
+{% include "atoms/link.html" with text="Sign up" url="register" %}
+{% include "atoms/link.html" with text="Forgot password?" url="#" %}
+{% include "atoms/link.html" with text="Back to Home" url="landing" %}
+
+Parameters:
+- text: Link text (required)
+- url: URL name or path (required) - use Django url names like "login", "register"
+{% endcomment %}
+
+<a href="{% url url %}" class="link">{{ text }}</a>

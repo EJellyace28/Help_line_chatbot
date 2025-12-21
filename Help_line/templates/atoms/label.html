@@ -1,0 +1,13 @@
+{% comment %}
+LABEL ATOM - Reusable label component
+
+Usage Examples:
+{% include "atoms/label.html" with text="Email Address" for_id="email" %}
+{% include "atoms/label.html" with text="Password" for_id="password" %}
+
+Parameters:
+- text: Label text (required)
+- for_id: ID of the input this label is for (required)
+{% endcomment %}
+
+<label class="label" for="{{ for_id }}">{{ text }}</label>

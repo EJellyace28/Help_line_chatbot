@@ -1,0 +1,13 @@
+{% comment %}
+NAV LINKS MOLECULE - Navigation buttons
+
+Usage:
+{% include "molecules/nav_links.html" %}
+
+This creates the "Log in" and "Sign up" buttons in the navigation
+{% endcomment %}
+
+<div class="nav-links">
+    <a href="{% url 'login' %}" class="btn btn-ghost">Log in</a>
+    <a href="{% url 'register' %}" class="btn btn-primary">Sign up</a>
+</div>
