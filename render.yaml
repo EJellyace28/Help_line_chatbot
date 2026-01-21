@@ -4,7 +4,7 @@ services:
     runtime: python
     plan: free
     buildCommand: "./build.sh"
-    startCommand: "gunicorn Help_line.wsgi:application"
+    startCommand: "python manage.py migrate --no-input && gunicorn Help_line.wsgi:application"
     envVars:
       - key: SECRET_KEY
         generateValue: true
