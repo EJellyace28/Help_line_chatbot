@@ -13,9 +13,21 @@ from .models import Chat, Message
 
 # Load environment variables and configure Groq
 load_dotenv()
-api_key = os.getenv('GROQ_API_KEY')
-print(f"Groq API Key loaded: {'Yes' if api_key else 'NO'}")
-client = Groq(api_key=api_key)
+
+# Lazy initialization of Groq client to prevent startup crash if API key is missing
+_groq_client = None
+
+def get_groq_client():
+    """Get or create the Groq client lazily."""
+    global _groq_client
+    if _groq_client is None:
+        api_key = os.getenv('GROQ_API_KEY')
+        if not api_key:
+            print("WARNING: GROQ_API_KEY not set!")
+            return None
+        _groq_client = Groq(api_key=api_key)
+        print("Groq client initialized successfully")
+    return _groq_client
 
 # System prompt for the AI assistant
 SYSTEM_PROMPT = """You are Calm Companion, a warm, empathetic, and supportive AI assistant focused on mental wellness and emotional support. 
@@ -173,6 +185,11 @@ def send_message(request, chat_id):
         
         # Generate AI response using Groq (FREE Llama model)
         try:
+            # Get the Groq client (lazy initialization)
+            client = get_groq_client()
+            if client is None:
+                raise Exception("GROQ_API_KEY not configured. Please set it in environment variables.")
+            
             # Build conversation history for Groq
             messages = [{"role": "system", "content": SYSTEM_PROMPT}]
             
