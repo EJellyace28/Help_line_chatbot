@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: help-line
+    runtime: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn Help_line.wsgi:application"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: PYTHON_VERSION
+        value: "3.11.6"
+      - key: GROQ_API_KEY
+        sync: false
